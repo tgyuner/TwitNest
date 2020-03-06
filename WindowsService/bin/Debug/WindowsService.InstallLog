@@ -1,0 +1,29 @@
+﻿Installing assembly 'C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe
+Installing service Service1...
+Creating EventLog source Service1 in log Application...
+Rolling back assembly 'C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe
+Restoring event log to previous state for source Service1.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe
+Installing service Service1...
+Service Service1 has been successfully installed.
+Creating EventLog source Service1 in log Application...
+Committing assembly 'C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\tugay.uner\source\repos\APIEntegrasyon\WindowsService\bin\Debug\WindowsService.exe

@@ -1,0 +1,55 @@
+﻿@model  APIEntegrasyon.Models.WindowsService.Alarm
+@using (Html.BeginForm("AddNotification", "Home", FormMethod.Post))
+    {
+<div id="receiver">
+</div>
+<div class="[ panel panel-default ] panel-google-plus">
+    <div class="dropdown">
+        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+        </span>
+        <ul class="dropdown-menu" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+    </div>
+    <div class="panel-google-plus-tags">
+        <ul>
+            <li> Tugay </li>
+            <li> UNER</li>
+        </ul>
+    </div>
+    <div class="panel-heading">
+        <img class="[ img-circle pull-left ]" src="https://pbs.twimg.com/profile_images/875087697177567232/Qfy0kRIP_bigger.jpg" alt="Mouse0270" />
+        <h3>Tweet At</h3>
+        <h5><span>Shared Date</span> - <span>@DateTime.Now</span> </h5>
+    </div>
+    <div class="panel-footer">
+        <div class="form-group">
+            @Html.HiddenFor(x => x.DeadLine, new { id = "deadline-from" })
+            <input type="datetime-local" id="deadline" class="form-control" />
+        </div>
+        <script>
+                $("#deadline").change(function () {
+                    $("#deadline-from").val($(this).val());
+                });
+        </script>
+        <button type="button" class="[ btn btn-default ]">+1</button>
+        <button type="button" class="[ btn btn-default ]">
+            <span class="[ glyphicon glyphicon-share-alt ]"></span>
+        </button>
+        <div class="input-placeholder">Twitleee...</div>
+    </div>
+    <div class="panel-google-plus-comment">
+        <div class="panel-google-plus-textarea">
+            @Html.TextAreaFor(x => x.Content, new { id = "textValue", rows = "4" })
+            <button type="submit" id="sendMessage" class="[ btn btn-success disabled ]">Send Tweet</button>
+            <button type="reset" class="[ btn btn-default ]">Cancel</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+}

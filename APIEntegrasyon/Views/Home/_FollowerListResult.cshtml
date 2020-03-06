@@ -1,0 +1,74 @@
+﻿
+@model List<APIEntegrasyon.Models.MemberList>
+
+@foreach (var member in Model)
+{
+    <div id="receiver">
+         @Html.Hidden(member.Id.ToString())
+    </div>
+    <div class="[ panel panel-default ] panel-google-plus">
+        <div class="dropdown">
+            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+            </span>
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+        </div>
+        <div class="panel-google-plus-tags">
+            <ul>
+                <li>#Millennials</li>
+                <li>#Generation</li>
+            </ul>
+        </div>
+        <div class="panel-heading">
+            <img class="[ img-circle pull-left ]" src="@member.ProfilImage" alt="Mouse0270" />
+            <h3>@member.UserName</h3>
+            <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="[ btn btn-default ]">+1</button>
+            <button type="button" class="[ btn btn-default ]">
+                <span class="[ glyphicon glyphicon-share-alt ]"></span>
+            </button>
+            <div class="input-placeholder">Add a comment...</div>
+        </div>
+        <div class="panel-google-plus-comment">
+            <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+            <div class="panel-google-plus-textarea">
+                <textarea id="textValue" rows="4"></textarea>
+                <button type="submit" id="sendMessage" class="[ btn btn-success disabled ]">Post comment</button>
+                <button type="reset" class="[ btn btn-default ]">Cancel</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+}
+<script>
+
+    $(function () {
+        $('#sendMessage').on('click', function (event) {
+            var message = $("#textValue").val();
+            var receiverId = $("#receiver").children().attr("name");
+            var hiddenButton = $(this).next();
+            $.ajax({
+                type: "Get",
+                url: '@Url.Action("SendDirectMessage", "Home")',
+                data: { receiverId : receiverId, message : message},
+                dataType: "Json",
+                contentType: "application/json; charset=utf-8",
+                success: function(r) {
+                    alert("Mesaj Gönderildi.");
+                    hiddenButton.click();
+                },
+                error: function(r) {
+                    alert("Bir Hata Oluştu.");
+                }
+            });
+        });
+    });
+</script>

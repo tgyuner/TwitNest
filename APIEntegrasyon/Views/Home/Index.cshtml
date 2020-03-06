@@ -1,0 +1,120 @@
+﻿@model List<APIEntegrasyon.Models.BaseViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @foreach (var post in Model)
+                {
+                    @* Posts *@
+                    <div class="[ panel panel-default ] panel-google-plus">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-google-plus-tags">
+                            <ul>
+                                <li>#Millennials</li>
+                                <li>#Generation</li>
+                            </ul>
+                        </div>
+                        <div class="panel-heading">
+                            <img class="[ img-circle pull-left ]" src="@post.PostViewModel.AuthorProfilPhoto" alt="Mouse0270" />
+                            <h3>@post.PostViewModel.UserName</h3>
+                            <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                        </div>
+                        <div class="panel-body">
+                            @{
+                                string data = post.PostViewModel.Content;
+                            }
+                            @Html.Raw(data);
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="[ btn btn-default ]">+1</button>
+                            <button type="button" class="[ btn btn-default ]">
+                                <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                            </button>
+                            <div class="input-placeholder">Add a comment...</div>
+                        </div>
+                        <div class="panel-google-plus-comment">
+                            <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                            <div class="panel-google-plus-textarea">
+                                <textarea rows="4"></textarea>
+                                <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                                <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-4">
+                @{
+                    Html.RenderAction("FollowerListResult");
+                }
+            </div>
+            <div class="col-md-4">
+                @{
+                    Html.RenderAction("AddNotification");
+                }
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    $(function () {
+        $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="reset"]').on('click', function (event) {
+            var $panel = $(this).closest('.panel-google-plus');
+            $comment = $panel.find('.panel-google-plus-comment');
+
+            $comment.find('.btn:first-child').addClass('disabled');
+            $comment.find('textarea').val('');
+
+            $panel.toggleClass('panel-google-plus-show-comment');
+
+            if ($panel.hasClass('panel-google-plus-show-comment')) {
+                $comment.find('textarea').focus();
+            }
+        });
+        $('.panel-google-plus-comment > .panel-google-plus-textarea > textarea').on('keyup', function (event) {
+            var $comment = $(this).closest('.panel-google-plus-comment');
+
+            $comment.find('button[type="submit"]').addClass('disabled');
+            if ($(this).val().length >= 1) {
+                $comment.find('button[type="submit"]').removeClass('disabled');
+            }
+        });
+    });
+</script>
